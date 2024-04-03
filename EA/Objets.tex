@@ -1,0 +1,26 @@
+% Copy this before \begin{document}
+
+\usepackage[normalem]{ulem}
+\newenvironment{mld}
+  {\par\begin{minipage}{\linewidth}\begin{tabular}{rp{0.7\linewidth}}}
+  {\end{tabular}\end{minipage}\par}
+\newcommand{\relat}[1]{\textsc{#1}}
+\newcommand{\attr}[1]{\emph{#1}}
+\newcommand{\prim}[1]{\uline{#1}}
+\newcommand{\foreign}[1]{\#\textsl{#1}}
+
+% Copy that after \begin{document}
+
+\begin{mld}
+  Appartient\_a & (\foreign{\prim{id\_objet}}, \foreign{\prim{id\_liste}}, \attr{descriptif\_objet\_liste})\\
+  Appartient\_a\_archive & (\foreign{\prim{id\_objet}}, \foreign{\prim{id\_liste\_ar}}, \attr{descriptif\_objet\_liste\_ar})\\
+% Categorie & (\prim{description\_cat})\\
+  Commente & (\foreign{\prim{id\_objet}}, \foreign{\prim{id\_user}}, \attr{texte\_commentaire}, \attr{date\_commentaire})\\
+  Liste & (\prim{id\_liste}, \attr{nom\_liste}, \attr{descriptif\_liste}, \foreign{description\_cat}, \foreign{id\_user})\\
+  Liste\_archivee & (\prim{id\_liste\_ar}, \attr{nom\_liste\_ar}, \attr{descriptif\_liste\_ar}, \attr{date\_archivage}, \foreign{description\_cat}, \foreign{id\_user})\\
+  Note & (\foreign{\prim{id\_objet}}, \foreign{\prim{id\_user}}, \attr{note}, \attr{date\_note})\\
+  Objet & (\prim{id\_objet}, \attr{nom\_objet}, \foreign{description\_cat})\\
+  Possede & (\foreign{\prim{id\_objet}}, \foreign{\prim{id\_user}})\\
+  Prevoit\_achat & (\foreign{\prim{id\_objet}}, \foreign{\prim{id\_user}})\\
+  Utilisateur & (\prim{id\_user}, \attr{login}, \attr{nom}, \attr{prenom}, \attr{adresse}, \attr{email}, \attr{motDePasse}, \attr{date\_naiss}, \attr{date\_inscript})\\
+\end{mld}

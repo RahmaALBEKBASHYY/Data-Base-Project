@@ -1,0 +1,30 @@
+-- L'entité CATEGORIE n'est pas conservée (transformée en attribut)
+-- Comme on prévoit un seul commentaire/note d'utilisateur par objet, ces associations sont regroupées dans une association AVIS
+
+UTILISATEUR (_id_user_ : int, login : string, nom : string, prenom : string, adresse : string, email : string, motDePasse : string, date_naiss : date, date_inscript : date)
+	PK : _id_user_
+OBJET (_id_objet_ : int, nom_objet : string, categorie_obj : string)
+	PK : _id_objet_
+LISTE (_id_liste_ : int, nom_liste, descriptif_liste : string, categorie_liste : string, #id_user : int)
+	PK : _id_liste_
+
+APPARTIENT_A (_#id_objet_ : int, _#id_liste_ : int, descriptif_objet_liste : string)
+	PK : _#id_objet_, _#id_liste_
+	FK : OBJET(_#id_objet_), LISTE(_#id_liste_)
+POSSEDE (_#id_objet_ : int, _#id_user_ : int)
+	PK : _#id_objet_, _#id_user_
+	FK : OBJET(_#id_objet_), UTILISATEUR(_#id_user_)
+PREVOIT_ACHAT (_#id_objet_ : int, _#id_user_ : int)
+	PK : _#id_objet_, _#id_user_
+	FK : OBJET(_#id_objet_), UTILISATEUR(_#id_user_)
+AVIS (_#id_objet_ : int, _#id_user_ : int, note : int, commentaire : string, date_avis : date)
+	PK : _#id_objet_, _#id_user_
+	FK : OBJET(_#id_objet_), UTILISATEUR(_#id_user_)
+
+LISTE_ARCHIVEE (_id_liste_ar_ : int, nom_liste_ar : string, descriptif_liste_ar : string, categorie_liste_ar : string, date_archivage : date, #id_user : int)
+	PK : _id_liste_ar_
+APPARTIENT_A_ARCHIVE (_#id_objet_ : int, _#id_liste_ar_ : int, descriptif_objet_liste_ar : string)
+	PK : _#id_objet_, _#id_liste_ar_
+	FK : OBJET(_#id_objet_), LISTE_ARCHIVEE(_#id_liste_ar_)
+
+

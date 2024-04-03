@@ -1,0 +1,29 @@
+
+
+:::::
+APPARTIENT_A_ARCHIVE: #id_objet->OBJET->id_objet, _#id_liste_ar->LISTE_ARCHIVEE->id_liste_ar, descriptif_objet_liste_ar
+:
+OBJET: id_objet, nom_objet, description_cat
+:
+APPARTIENT_A: #id_objet->OBJET->id_objet, _#id_liste->LISTE->id_liste, descriptif_objet_liste
+:::
+
+
+:
+LISTE_ARCHIVEE: id_liste_ar, nom_liste_ar, descriptif_liste_ar, date_archivage, description_cat, #id_user->UTILISATEUR->id_user
+:
+NOTE: #id_objet->OBJET->id_objet, _#id_user->UTILISATEUR->id_user, note, date_note
+:
+POSSEDE: #id_objet->OBJET->id_objet, _#id_user->UTILISATEUR->id_user
+:
+PREVOIT_ACHAT: #id_objet->OBJET->id_objet, _#id_user->UTILISATEUR->id_user
+:
+COMMENTE: #id_objet->OBJET->id_objet, _#id_user->UTILISATEUR->id_user, texte_commentaire, date_commentaire
+:
+LISTE: id_liste, nom_liste, descriptif_liste, description_cat, #id_user->UTILISATEUR->id_user
+:
+
+
+:::::::
+UTILISATEUR: id_user, login, nom, prenom, adresse, email, motDePasse, date_naiss, date_inscript
+:::::

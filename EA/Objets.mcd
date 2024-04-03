@@ -1,0 +1,34 @@
+:
+:
+:
+CATEGORIE: description_cat
+:
+:
+
+:
+      A_CATEGORIE_LA, 11 LISTE_ARCHIVEE, 1N CATEGORIE
+:
+      A_CATEGORIE_O, 11 OBJET, 1N CATEGORIE
+      A_CATEGORIE_L, 11 LISTE, 1N CATEGORIE
+:
+
+:
+:
+    APPARTIENT_A_ARCHIVE, 0N OBJET, 1N LISTE_ARCHIVEE: descriptif_objet_liste_ar
+      OBJET: id_objet, nom_objet
+    APPARTIENT_A, 0N OBJET, 1N LISTE: descriptif_objet_liste
+:
+
+    LISTE_ARCHIVEE: id_liste_ar, nom_liste_ar, descriptif_liste_ar, date_archivage
+  NOTE, 0N OBJET, 0N UTILISATEUR: note, date_note
+  POSSEDE, 0N OBJET, 0N UTILISATEUR
+  PREVOIT_ACHAT, 0N OBJET, 0N UTILISATEUR
+  COMMENTE, 0N OBJET, 0N UTILISATEUR: texte_commentaire, date_commentaire
+    LISTE: id_liste, nom_liste, descriptif_liste
+
+:
+:
+  A_CREE, 11 LISTE_ARCHIVEE, 0N UTILISATEUR
+UTILISATEUR: id_user, login, nom, prenom, adresse, email, motDePasse, date_naiss, date_inscript
+  CREE, 11 LISTE, 0N UTILISATEUR
+:

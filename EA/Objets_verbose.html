@@ -1,0 +1,168 @@
+<html>
+<head>
+<meta charset='utf-8'>
+<style>
+  #mld .relation { font-variant: small-caps; font-weight: bold }
+  #mld .primary { text-decoration: underline }
+  #mld .foreign { font-style: oblique }
+  #mld .normal { }
+  #mld strong { font-weight: bold }
+  #mld i { font-style: italic }
+  #mld ul { list-style-type:square; margin: 0 0 1em 2em }
+</style>
+</head>
+<body>
+<div id='mld'>
+<div>
+  <details><summary><span class='relation'>APPARTIENT_A</span> (
+    <span title='primary_foreign_key (OBJET)' class='foreign primary'>#id_objet</span>,
+    <span title='primary_foreign_key (LISTE)' class='foreign primary'>#id_liste</span>,
+    <span title='association_attribute (None)' class='normal'>descriptif_objet_liste</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>id_objet</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>OBJET</i>.</li>
+    <li>Le champ <i>id_liste</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>LISTE</i>.</li>
+    <li>Le champ <i>descriptif_objet_liste</i> était déjà un simple attribut de l'association <i>APPARTIENT_A</i>.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>APPARTIENT_A_ARCHIVE</span> (
+    <span title='primary_foreign_key (OBJET)' class='foreign primary'>#id_objet</span>,
+    <span title='primary_foreign_key (LISTE_ARCHIVEE)' class='foreign primary'>#id_liste_ar</span>,
+    <span title='association_attribute (None)' class='normal'>descriptif_objet_liste_ar</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>id_objet</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>OBJET</i>.</li>
+    <li>Le champ <i>id_liste_ar</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>LISTE_ARCHIVEE</i>.</li>
+    <li>Le champ <i>descriptif_objet_liste_ar</i> était déjà un simple attribut de l'association <i>APPARTIENT_A_ARCHIVE</i>.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>CATEGORIE</span> (
+    <span title='primary_key (None)' class='primary'>description_cat</span>
+  )</summary>
+  <ul>
+    <li><strong>Avertissement.</strong> Cette table ne comportant qu'un seul champ, on peut envisager de la supprimer.</li>
+    <li>Le champ <i>description_cat</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>CATEGORIE</i>.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>COMMENTE</span> (
+    <span title='primary_foreign_key (OBJET)' class='foreign primary'>#id_objet</span>,
+    <span title='primary_foreign_key (UTILISATEUR)' class='foreign primary'>#id_user</span>,
+    <span title='association_attribute (None)' class='normal'>texte_commentaire</span>,
+    <span title='association_attribute (None)' class='normal'>date_commentaire</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>id_objet</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>OBJET</i>.</li>
+    <li>Le champ <i>id_user</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>UTILISATEUR</i>.</li>
+    <li>Les champs <i>texte_commentaire</i> et <i>date_commentaire</i> étaient déjà de simples attributs de l'association <i>COMMENTE</i>.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>LISTE</span> (
+    <span title='primary_key (None)' class='primary'>id_liste</span>,
+    <span title='normal_attribute (None)' class='normal'>nom_liste</span>,
+    <span title='normal_attribute (None)' class='normal'>descriptif_liste</span>,
+    <span title='foreign_key (CATEGORIE)' class='foreign'>#description_cat</span>,
+    <span title='foreign_key (UTILISATEUR)' class='foreign'>#id_user</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>id_liste</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>LISTE</i>.</li>
+    <li>Les champs <i>nom_liste</i> et <i>descriptif_liste</i> étaient déjà de simples attributs de l'entité <i>LISTE</i>.</li>
+    <li>Le champ <i>description_cat</i> est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle <i>A_CATEGORIE_L</i> à partir de l'entité <i>CATEGORIE</i> en perdant son caractère identifiant.</li>
+    <li>Le champ <i>id_user</i> est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle <i>CREE</i> à partir de l'entité <i>UTILISATEUR</i> en perdant son caractère identifiant.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>LISTE_ARCHIVEE</span> (
+    <span title='primary_key (None)' class='primary'>id_liste_ar</span>,
+    <span title='normal_attribute (None)' class='normal'>nom_liste_ar</span>,
+    <span title='normal_attribute (None)' class='normal'>descriptif_liste_ar</span>,
+    <span title='normal_attribute (None)' class='normal'>date_archivage</span>,
+    <span title='foreign_key (CATEGORIE)' class='foreign'>#description_cat</span>,
+    <span title='foreign_key (UTILISATEUR)' class='foreign'>#id_user</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>id_liste_ar</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>LISTE_ARCHIVEE</i>.</li>
+    <li>Les champs <i>nom_liste_ar</i>, <i>descriptif_liste_ar</i> et <i>date_archivage</i> étaient déjà de simples attributs de l'entité <i>LISTE_ARCHIVEE</i>.</li>
+    <li>Le champ <i>description_cat</i> est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle <i>A_CATEGORIE_LA</i> à partir de l'entité <i>CATEGORIE</i> en perdant son caractère identifiant.</li>
+    <li>Le champ <i>id_user</i> est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle <i>A_CREE</i> à partir de l'entité <i>UTILISATEUR</i> en perdant son caractère identifiant.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>NOTE</span> (
+    <span title='primary_foreign_key (OBJET)' class='foreign primary'>#id_objet</span>,
+    <span title='primary_foreign_key (UTILISATEUR)' class='foreign primary'>#id_user</span>,
+    <span title='association_attribute (None)' class='normal'>note</span>,
+    <span title='association_attribute (None)' class='normal'>date_note</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>id_objet</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>OBJET</i>.</li>
+    <li>Le champ <i>id_user</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>UTILISATEUR</i>.</li>
+    <li>Les champs <i>note</i> et <i>date_note</i> étaient déjà de simples attributs de l'association <i>NOTE</i>.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>OBJET</span> (
+    <span title='primary_key (None)' class='primary'>id_objet</span>,
+    <span title='normal_attribute (None)' class='normal'>nom_objet</span>,
+    <span title='foreign_key (CATEGORIE)' class='foreign'>#description_cat</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>id_objet</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>OBJET</i>.</li>
+    <li>Le champ <i>nom_objet</i> était déjà un simple attribut de l'entité <i>OBJET</i>.</li>
+    <li>Le champ <i>description_cat</i> est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle <i>A_CATEGORIE_O</i> à partir de l'entité <i>CATEGORIE</i> en perdant son caractère identifiant.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>POSSEDE</span> (
+    <span title='primary_foreign_key (OBJET)' class='foreign primary'>#id_objet</span>,
+    <span title='primary_foreign_key (UTILISATEUR)' class='foreign primary'>#id_user</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>id_objet</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>OBJET</i>.</li>
+    <li>Le champ <i>id_user</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>UTILISATEUR</i>.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>PREVOIT_ACHAT</span> (
+    <span title='primary_foreign_key (OBJET)' class='foreign primary'>#id_objet</span>,
+    <span title='primary_foreign_key (UTILISATEUR)' class='foreign primary'>#id_user</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>id_objet</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>OBJET</i>.</li>
+    <li>Le champ <i>id_user</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>UTILISATEUR</i>.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>UTILISATEUR</span> (
+    <span title='primary_key (None)' class='primary'>id_user</span>,
+    <span title='normal_attribute (None)' class='normal'>login</span>,
+    <span title='normal_attribute (None)' class='normal'>nom</span>,
+    <span title='normal_attribute (None)' class='normal'>prenom</span>,
+    <span title='normal_attribute (None)' class='normal'>adresse</span>,
+    <span title='normal_attribute (None)' class='normal'>email</span>,
+    <span title='normal_attribute (None)' class='normal'>motDePasse</span>,
+    <span title='normal_attribute (None)' class='normal'>date_naiss</span>,
+    <span title='normal_attribute (None)' class='normal'>date_inscript</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>id_user</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>UTILISATEUR</i>.</li>
+    <li>Les champs <i>login</i>, <i>nom</i>, <i>prenom</i>, <i>adresse</i>, <i>email</i>, <i>motDePasse</i>, <i>date_naiss</i> et <i>date_inscript</i> étaient déjà de simples attributs de l'entité <i>UTILISATEUR</i>.</li>
+  </ul></details>
+</div>
+
+</div>
+</body>
+</html>
